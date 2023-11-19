@@ -16,8 +16,8 @@ hands = mp_hands.Hands(static_image_mode = True,
 coords = []
 sign_type = []
 
-for letter_dir in os.listdir(DATA_PATH)[:2]:
-    for img_file in os.listdir(os.path.join(DATA_PATH, letter_dir))[:1]:
+for letter_dir in os.listdir(DATA_PATH):
+    for img_file in os.listdir(os.path.join(DATA_PATH, letter_dir)):
         data_temp = []
         x_coords = []
         y_coords = []
