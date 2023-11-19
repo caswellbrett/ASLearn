@@ -46,7 +46,8 @@ while True:
                 y = hand_landmarks.landmark[i].y
                 data_temp.append(x - min(x_coords))
                 data_temp.append(y - min(y_coords))
-        prediction = model.predict([np.asarray(data_temp)])
+        if len(data_temp) == 42:
+            prediction = model.predict([np.asarray(data_temp)])
 
         print(prediction[0])
     cv2.imshow('frame', frame)
