@@ -3,6 +3,11 @@ from django.db import models
 # THIS IS DATABASE STUFF
 
 
+class User(models.Model):
+    name = models.CharField(max_length=255, primary_key=True)
+    current_question = models.IntegerField(default=1)
+
+
 class Stage(models.Model):
     title = models.CharField(max_length=255)
     length = models.IntegerField(default=0)

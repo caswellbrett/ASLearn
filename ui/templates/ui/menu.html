@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Menu</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ui/menu.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <h1>Welcome {{ user.name }}!</h1>
+    <h2>Current Stages</h2>
+    {% if stage_list %}
+        <ul>
+        {% for stage in stage_list %}
+            {% if stage.id <= user.current_question %}
+            <li><a href="{% url 'asl:question' stage.id 1%}">{{ stage.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

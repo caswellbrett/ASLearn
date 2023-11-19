@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ stage.title }} | Question {{ question.q_num }}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'ui/question.css' %}">
+</head>
+<body>
+<h1>Question #{{ question.q_num }} </h1>
+
+{% if stage.id == 1 %}
+  <h2>Sign the number: {{ question.question_text }}</h2>
+{% else %}
+  <h2>The word is: {{ question.question_text }}</h2>
+{% endif %}
+
+  {% if question.q_num != stage.length %}
+    <form action="{% url 'asl:question' stage.id next %}" method="post">
+    {% csrf_token %}
+        <button class='test' name="next" value="next">Next!</button>
+    </form>
+
+  {% else %}
+    <form action="{% url 'asl:menu' %}" method="post">
+    {% csrf_token %}
+      <input type="hidden" name="completed_stage" value="{{ stage.id }}">
+      <button class='test' name="finish" value="numbers">Finish!</button>
+    </form>
+
+  {% endif %}
+
+</body>
+</html>
