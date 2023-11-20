@@ -2,6 +2,13 @@ import cv2
 import mediapipe as mp
 import pickle
 import numpy as np
+import sys
+
+if len(sys.argv) == 2:
+    word_to_sign = sys.argv[1]
+else:
+    raise Exception("Bad number of arguments")
+
 cap = cv2.VideoCapture(0)
 
 mp_hands = mp.solutions.hands
@@ -14,7 +21,7 @@ hands = mp_hands.Hands(static_image_mode = True,
 model_dict = pickle.load(open('./model.p', 'rb'))
 model = model_dict['model']
 
-while True:
+while word_to_sign != "":
     data_temp = []
     x_coords = []
     y_coords = []
@@ -49,7 +56,8 @@ while True:
         if len(data_temp) == 42:
             prediction = model.predict([np.asarray(data_temp)])
 
-        print(prediction[0])
+        if prediction[0] == word_to_sign[:1]:
+            word_to_sign = word_to_sign[1:]
     cv2.imshow('frame', frame)
     cv2.waitKey(5)
 
