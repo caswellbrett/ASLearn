@@ -61,10 +61,10 @@ while word_to_sign != "":
                 data_temp.append(y - min(y_coords))
         if len(data_temp) == 42:
             prediction = model.predict([np.asarray(data_temp)])
-
-        if prediction[0] == word_to_sign[:1]:
             print(prediction[0])
-            word_to_sign = word_to_sign[1:]
+            if prediction[0] == word_to_sign[:1]:
+                word_to_sign = word_to_sign[1:]
+
     cv2.imshow('frame', frame)
     cv2.waitKey(5)
 

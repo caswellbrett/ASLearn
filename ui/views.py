@@ -50,6 +50,5 @@ def question(request, stage_id, question_id):
     stage = Stage.objects.get(pk=stage_id)
     next = question.q_num + 1
     context = {"question": question, "stage": stage, "next": next}
-    subprocess.Popen(["python3", "./vision/test_classifier.py"])
+    subprocess.Popen(["python3", "./vision/test_classifier.py", (question.question_text).upper()])
     return render(request, "ui/question.html", context)
-
