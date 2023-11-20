@@ -6,7 +6,7 @@ from .models import Stage
 from .models import User
 from .models import Question
 from django.shortcuts import get_object_or_404, render
-
+import subprocess
 import os
 
 current_user = ""
@@ -50,6 +50,6 @@ def question(request, stage_id, question_id):
     stage = Stage.objects.get(pk=stage_id)
     next = question.q_num + 1
     context = {"question": question, "stage": stage, "next": next}
-    os.system("python3 ./vision/test_classifer.py")
+    subprocess.Popen(["python3", "./vision/test_classifier.py"])
     return render(request, "ui/question.html", context)
 

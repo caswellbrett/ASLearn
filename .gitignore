@@ -160,3 +160,8 @@ cython_debug/
 /.idea/*
 
 *.jpg
+
+.DS_Store
+ui/.DS_Store
+ui/static/.DS_Store
+ui/static/ui/.DS_Store

@@ -20,6 +20,13 @@
   <h2>The word is: {{ question.question_text }}</h2>
 {% endif %}
 
+  <table id="sign-table">
+    <tr>
+      {% for letter in question.question_text %}
+        <td class="letter"><img src="{% static 'ui/'|add:letter|add:'.png' %}"></td>
+      {% endfor %}
+    </tr>
+  </table>
   {% if question.q_num != stage.length %}
     <form action="{% url 'asl:question' stage.id next %}" method="post">
     {% csrf_token %}
