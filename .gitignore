@@ -161,7 +161,12 @@ cython_debug/
 
 *.jpg
 
+<<<<<<< Updated upstream
 .DS_Store
 ui/.DS_Store
 ui/static/.DS_Store
 ui/static/ui/.DS_Store
+=======
+data.pickle
+model.p
+>>>>>>> Stashed changes

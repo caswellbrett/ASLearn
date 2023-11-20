@@ -4,6 +4,7 @@ import pickle
 import numpy as np
 import sys
 
+# parsing args
 if len(sys.argv) == 2:
     word_to_sign = sys.argv[1]
 else:
@@ -20,6 +21,11 @@ hands = mp_hands.Hands(static_image_mode = True,
 
 model_dict = pickle.load(open('./model.p', 'rb'))
 model = model_dict['model']
+
+word_to_sign = word_to_sign.replace('0', 'O')
+word_to_sign = word_to_sign.replace('1', 'D')
+word_to_sign = word_to_sign.replace('2', 'V')
+word_to_sign = word_to_sign.replace('6', 'W')
 
 while word_to_sign != "":
     data_temp = []
@@ -57,6 +63,7 @@ while word_to_sign != "":
             prediction = model.predict([np.asarray(data_temp)])
 
         if prediction[0] == word_to_sign[:1]:
+            print(prediction[0])
             word_to_sign = word_to_sign[1:]
     cv2.imshow('frame', frame)
     cv2.waitKey(5)
